@@ -1,4 +1,3 @@
-import filecmp
 import subprocess
 import platform
 
@@ -19,10 +18,11 @@ wrong = 0
 
 count = 0
 while count < 2500:
-    f1 = f"myoutputs/output{count}.txt"
-    f2 = f"outputs/output{count}.txt"
+    f1 = open(f"myoutputs/output{count}.txt")
+    f2 = open(f"outputs/output{count}.txt")
 
-    result = filecmp.cmp(f1, f2, shallow=False)
+    
+    result = (f1.read() == f2.read())
     if result == True:
         true += 1
     else:
